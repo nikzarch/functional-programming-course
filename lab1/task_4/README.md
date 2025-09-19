@@ -4,15 +4,17 @@ Solutions for Project Euler's Problem № 4:
 >
 >Find the largest palindrome made from the product of two 3-digit numbers.
 
+## is_palindrome(Number) util function
+```erlang
+is_palindrome(Number) when is_integer(Number) ->
+    NumberList = integer_to_list(Number),
+    is_palindrome_list(NumberList).
+is_palindrome_list(List) ->
+    List == lists:reverse(List).
+```
 ## Simple tail recursive solution
 
 ```erlang
-is_palindrome(Number) ->
-  NumberList = integer_to_list(Number),
-  is_palindrome_list(NumberList).
-is_palindrome_list(List) ->
-  List == lists:reverse(List).
-
 %% Finds the largest palindrome made from the product of two 3-digits numbers
 largest_palindrome_product() -> largest_palindrome_product(999, 999, 0).
 largest_palindrome_product(A, B, Max) when A == 99 ->
@@ -37,12 +39,6 @@ largest_palindrome_product(A, B, Max) ->
 ## Simple regular recursive solution
 
 ```erlang
-is_palindrome(Number) ->
-  NumberList = integer_to_list(Number),
-  is_palindrome_list(NumberList).
-is_palindrome_list(List) ->
-  List == lists:reverse(List).
-
 %% Finds the largest palindrome made from the product of two 3-digits numbers
 largest_palindrome_product() -> largest_palindrome_product(999, 999).
 largest_palindrome_product(A, B) when A == 99 ->
@@ -59,12 +55,6 @@ largest_palindrome_product(A, B) ->
 
 ## Module solution
 ```erlang
-is_palindrome(Number) ->
-  NumberList = integer_to_list(Number),
-  is_palindrome_list(NumberList).
-is_palindrome_list(List) ->
-  List == lists:reverse(List).
-
 generate_list_of_products() ->
   [X * Y || X <- lists:seq(100, 999), Y <- lists:seq(100, 999)].
 filter_palindromes(Products) ->
