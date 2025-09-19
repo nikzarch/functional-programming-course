@@ -8,11 +8,7 @@
 -module(regular_recursion_4).
 -author("nikzarch").
 -export([largest_palindrome_product/0]).
-is_palindrome(Number) ->
-    NumberList = integer_to_list(Number),
-    is_palindrome_list(NumberList).
-is_palindrome_list(List) ->
-    List == lists:reverse(List).
+-import(palindrome_utils, [is_palindrome/1]).
 
 %% Finds the largest palindrome made from the product of two 3-digits numbers
 largest_palindrome_product() -> largest_palindrome_product(999, 999).
