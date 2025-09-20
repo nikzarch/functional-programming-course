@@ -8,12 +8,7 @@
 -module(module_4).
 -author("nikzarch").
 -export([largest_palindrome_product/0]).
-
-is_palindrome(Number) ->
-    NumberList = integer_to_list(Number),
-    is_palindrome_list(NumberList).
-is_palindrome_list(List) ->
-    List == lists:reverse(List).
+-import(palindrome_utils, [is_palindrome/1]).
 
 generate_list_of_products() ->
     [X * Y || X <- lists:seq(100, 999), Y <- lists:seq(100, 999)].
