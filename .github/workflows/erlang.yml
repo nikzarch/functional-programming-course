@@ -1,0 +1,33 @@
+name: Erlang CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        otp: [22.0.7, 24.3, 25.3]
+
+    container:
+      image: erlang:${{ matrix.otp }}
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Compile project
+        run: rebar3 compile
+
+      - name: Run EUnit tests
+        run: rebar3 eunit
+
+      - name: Run Common Test
+        run: rebar3 ct
