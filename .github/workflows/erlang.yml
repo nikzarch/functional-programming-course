@@ -20,6 +20,7 @@ jobs:
         uses: erlef/setup-beam@v1
         with:
           otp-version: 25.3  
+          rebar3-version: latest
 
       - name: Compile project
         run: rebar3 compile
