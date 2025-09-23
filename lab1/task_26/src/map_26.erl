@@ -14,5 +14,5 @@ find_longest_recurring_cycle() ->
     NumberList = lists:seq(2, 999),
     Pairs = lists:map(fun(D) -> {cycle_length(D), D} end, NumberList),
     NonZero = lists:filter(fun({Len, _}) -> Len > 0 end, Pairs),
-    {_, Ans} = lists:max(NonZero),
-    Ans.
+    {_, Answer} = lists:max(NonZero),
+    Answer.
