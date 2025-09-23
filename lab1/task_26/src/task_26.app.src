@@ -1,0 +1,10 @@
+{application, task_26, [
+    {description, "Project Euler's problem №4"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {applications, [
+        kernel,
+        stdlib
+    ]},
+    {env, []}
+]}.
