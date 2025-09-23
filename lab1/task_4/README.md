@@ -53,23 +53,6 @@ largest_palindrome_product(A, B) ->
   end.
 ```
 
-## Module solution
-```erlang
-generate_list_of_products() ->
-  [X * Y || X <- lists:seq(100, 999), Y <- lists:seq(100, 999)].
-filter_palindromes(Products) ->
-  lists:filter(fun(X) -> is_palindrome(X) end, Products).
-fold_into_max_product(Palindromes) ->
-  [H | T] = Palindromes,
-  lists:foldl(fun(A, B) when A > B -> A; (_, B) -> B end, H, T).
-
-%% Finds the largest palindrome made from the product of two 3-digits numbers
-largest_palindrome_product() ->
-  Products = generate_list_of_products(),
-  ProductsFiltered = filter_palindromes(Products),
-  fold_into_max_product(ProductsFiltered).
-
-```
 
 ## Module solution
 ```erlang
