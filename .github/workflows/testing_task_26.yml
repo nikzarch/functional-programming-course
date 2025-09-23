@@ -1,0 +1,48 @@
+name: Erlang CI - Task 26
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "lab1/task_26/**"
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "lab1/task_26/**"
+
+permissions:
+  contents: read
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Erlang
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: 25.3
+          rebar3-version: 3.18.0
+
+      - name: Compile project
+        working-directory: lab1/task_26
+        run: rebar3 compile
+        
+  tests:
+    runs-on: ubuntu-latest
+    needs: compile  
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Erlang
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: 25.3
+          rebar3-version: 3.18.0
+
+      - name: Run EUnit tests
+        working-directory: lab1/task_26
+        run: rebar3 eunit
