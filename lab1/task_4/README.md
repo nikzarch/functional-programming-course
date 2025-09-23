@@ -1,4 +1,7 @@
-Solutions for Project Euler's Problem № 4:
+# Completed by
+Зонов Николай
+ - - -
+# Solutions for Project Euler's Problem № 4:
 > A palindromic number reads the same both ways. The largest palindrome made from the product of two
 > 2-digit numbers is 9009 = 91 * 99.
 >
@@ -12,7 +15,7 @@ is_palindrome(Number) when is_integer(Number) ->
 is_palindrome_list(List) ->
     List == lists:reverse(List).
 ```
-## Simple tail recursive solution
+## Tail recursive solution
 
 ```erlang
 %% Finds the largest palindrome made from the product of two 3-digits numbers
@@ -36,7 +39,7 @@ largest_palindrome_product(A, B, Max) ->
   end.
 ```
 
-## Simple regular recursive solution
+## Regular recursive solution
 
 ```erlang
 %% Finds the largest palindrome made from the product of two 3-digits numbers
