@@ -1,0 +1,1 @@
+-record(sc_dict, {size, count = 0, buckets}).

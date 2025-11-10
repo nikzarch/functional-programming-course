@@ -1,0 +1,10 @@
+{application, sc_dict, [
+    {description, "Separate Chaining Hashmap Dictionary"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {applications, [
+        kernel,
+        stdlib
+    ]},
+    {env, []}
+]}.
