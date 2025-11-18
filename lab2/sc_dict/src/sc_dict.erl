@@ -115,15 +115,24 @@ filter(Pred, Dict) ->
         end
                 end, New, Pairs).
 
-equal(D1, D2) when is_record(D1, sc_dict), is_record(D2, sc_dict) ->
-    if D1#sc_dict.count =/= D2#sc_dict.count ->
-        false;
+equal(D1, D2)
+    when is_record(D1, sc_dict),
+    is_record(D2, sc_dict) ->
+    if
+        D1#sc_dict.count =/= D2#sc_dict.count ->
+            false;
+
         true ->
-            lists:all(fun({K,V}) ->
-                case get(K, D2) of
-                    {ok, V2} -> V2 =:= V;
-                    _ -> false
+            FoldFun = fun(Key, Val, Acc) ->
+                case Acc of
+                    false -> false;
+                    true ->
+                        case get(Key, D2) of
+                            {ok, Val2} when Val2 =:= Val -> true;
+                            _ -> false
+                        end
                 end
-                      end, to_list(D1))
+                      end,
+            fold(FoldFun, true, D1)
     end;
 equal(_, _) -> false.
