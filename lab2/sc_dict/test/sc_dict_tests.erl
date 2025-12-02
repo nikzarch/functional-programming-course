@@ -58,21 +58,8 @@ collision_chaining_test() ->
     ?assertEqual({ok, 2}, sc_dict:get(k2, D3)),
     ?assertEqual({ok, 3}, sc_dict:get(k3, D3)).
 
-monoid_identity_test() ->
-    Empty = sc_dict:new(),
-    D = sc_dict:put(x, 1, sc_dict:put(y, 2, sc_dict:new())),
-    ?assertEqual(D, sc_dict:merge(Empty, D)),
-    ?assertEqual(D, sc_dict:merge(D, Empty)).
+prop_monoid_identity_test() ->
+    ?assert(proper:quickcheck(sc_dict_prop_tests:prop_monoid_identity())).
 
-monoid_associativity_test() ->
-    A = sc_dict:put(a, 1, sc_dict:new()),
-    B = sc_dict:put(b, 2, sc_dict:new()),
-    C = sc_dict:put(c, 3, sc_dict:new()),
-
-    Left  = sc_dict:merge(sc_dict:merge(A, B), C),
-    Right = sc_dict:merge(A, sc_dict:merge(B, C)),
-
-
-    ListL = lists:sort(sc_dict:to_list(Left)),
-    ListR = lists:sort(sc_dict:to_list(Right)),
-    ?assertEqual(ListL, ListR).
+prop_monoid_associativity_test() ->
+    ?assert(proper:quickcheck(sc_dict_prop_tests:prop_monoid_associativity())).
