@@ -6,23 +6,6 @@
 
 -include("../src/sc_dict.hrl").
 -define(sc_dict, sc_dict).
-
-
-key() ->
-    oneof([atom(), int(), binary()]).
-
-value() ->
-    oneof([int(), binary(), atom()]).
-
-pair() ->
-    {key(), value()}.
-
-dict() ->
-    ?LET(Pairs, list(pair()), list_to_dict(Pairs)).
-
-list_to_dict(Pairs) ->
-    lists:foldl(fun({K, V}, Acc) -> ?sc_dict:put(K, V, Acc) end, ?sc_dict:new(), Pairs).
-
 prop_monoid_identity() ->
     ?FORALL(A, dict(),
         begin
