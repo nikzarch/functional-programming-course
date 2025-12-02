@@ -39,3 +39,10 @@ prop_monoid_associativity() ->
             Right = ?DICT:merge(?DICT:merge(A, B), C),
             ?DICT:equal(Left, Right)
         end).
+
+prop_put_get() ->
+    ?FORALL({K, V, D}, {key(), value(), sc_dict_gen()},
+        begin
+            D2 = ?DICT:put(K, V, D),
+            ?DICT:get(K, D2) =:= {ok, V}
+        end).

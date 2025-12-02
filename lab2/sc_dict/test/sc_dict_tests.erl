@@ -63,3 +63,6 @@ prop_monoid_identity_test() ->
 
 prop_monoid_associativity_test() ->
     ?assert(proper:quickcheck(sc_dict_prop_tests:prop_monoid_associativity())).
+
+prop_get_test() ->
+    ?assert(proper:quickcheck(sc_dict_prop_tests:prop_put_get())).
