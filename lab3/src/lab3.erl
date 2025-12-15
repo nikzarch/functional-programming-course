@@ -1,4 +1,4 @@
-#!/usr/bin/env escript
+%#!/usr/bin/env escript
 %% -*- erlang -*-
 %%! -smp enable
 
@@ -8,12 +8,16 @@
 %%   --gauss
 %%   --step S
 %%   -n N
-
+-module(lab3).
 -export([
   main/1,
   printer_loop/0,
   generator_loop/1,
-  method_loop/5
+  method_loop/5,
+  compute_gauss/2,
+  compute_lagrange/2,
+  compute_linear/2,
+  compute_newton/2
 ]).
 
 -record(state, {
