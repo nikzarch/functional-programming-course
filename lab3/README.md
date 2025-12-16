@@ -38,8 +38,6 @@ main(Args) ->
   GeneratorPid ! {methods, MethodPids},
   input_loop(State, MethodPids, GeneratorPid, []),
 
-  receive after 1000  -> ok end,
-
   GeneratorPid ! eof,
   lists:foreach(fun(P) -> P ! eof end, MethodPids),
   PrinterPid ! eof,
