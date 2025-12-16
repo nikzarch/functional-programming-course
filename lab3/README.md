@@ -6,7 +6,7 @@
 Запуск
 
 ```bash
-./lab3.escript --linear --lagrange --newton --gauss --step 0.1 
+escript lab3.erl --linear --lagrange --newton --gauss --step 0.1 
 ```
 --linear, --lagrange, --newton, --gauss — включение соответствующих методов.
 
