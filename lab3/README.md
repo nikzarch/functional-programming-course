@@ -60,6 +60,19 @@ input_loop(State, MethodPids, GenPid, Points) ->
   end.
 
 ```
+## Принтер
+```erlang
+printer_loop() ->
+  receive
+    {result, Method, X, Y} ->
+      io:format("~s: ~.10g ~.10g~n", [method_prefix(Method), X, Y]),
+      printer_loop();
+    eof ->
+      ok;
+    _Other ->
+      printer_loop()
+  end.
+```
 ## Интерполяции всякие
 ```erlang
 compute_linear(_X, [])  -> undefined;
